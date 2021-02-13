@@ -6,10 +6,6 @@
     3a. Top card only.
     3b. All cards in surviving stacks.
 
-Results:
-- Static:  ~  6.9873% win probability
-- Dynamic: ~ 13.0944% win probability
-
 TODO:
 - median computation is slow.  just increment/decrement by 0.5.
 - write unit tests/asserts for correctness (consider performance of python function
