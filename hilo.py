@@ -11,7 +11,12 @@ Results:
 - Dynamic: ~ 13.0944% win probability
 
 TODO:
-- keep a sorted version of the deck to avoid sorting when updating median
+- median computation is slow.  just increment/decrement by 0.5.
+- write unit tests/asserts for correctness (consider performance of python function
+  calls though)
+- compute more stats (e.g. mean number of cards remaining, uncertainty in win %) and
+  save to .csv
+- a "draw" might be an optimal guess near the end-game (how often does this occur?)
 """
 
 import numpy as np
@@ -71,7 +76,7 @@ def simulate(num_games, track_median=False):
 
 
 if __name__ == '__main__':
-    trials = 1000000
+    trials = 100000
     for _ in range(3):
         print('===== static median =====')
         simulate(trials)
