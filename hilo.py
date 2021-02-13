@@ -31,7 +31,7 @@ def simulate(num_games, track_median=False):
     num_losses = 0
 
     for g in range(num_games):
-        print(f'game {g} / {num_games}', end = '\r')
+        print(f"game {g} / {num_games}", end="\r")
         deck = np.arange(52)
         median = np.median(deck)
         np.random.shuffle(deck)
@@ -44,16 +44,18 @@ def simulate(num_games, track_median=False):
             outlier_loc = np.argmax(np.abs(table - median))
             outlier = table[outlier_loc]
             if outlier < median:
-                guess = 'high'
+                guess = "high"
             elif outlier > median:
-                guess = 'low'
+                guess = "low"
             else:
-                guess = 'high' if np.random.randint(2) else 'low'
+                guess = "high" if np.random.randint(2) else "low"
 
             draw, deck = deck[0], deck[1:]
             draw_num = get_number(draw)
             outlier_num = get_number(outlier)
-            if (guess == 'high' and draw_num > outlier_num) or (guess == 'low' and draw_num < outlier_num):
+            if (guess == "high" and draw_num > outlier_num) or (
+                guess == "low" and draw_num < outlier_num
+            ):
                 # success, swap card in table
                 table[outlier_loc] = draw
             else:
@@ -68,14 +70,14 @@ def simulate(num_games, track_median=False):
             assert len(deck) == 0
 
     assert num_losses + num_wins == num_games
-    print(f'win %: {num_wins / num_games * 100}')
+    print(f"win %: {num_wins / num_games * 100}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     trials = 100000
     for _ in range(3):
-        print('===== static median =====')
+        print("===== static median =====")
         simulate(trials)
     for _ in range(3):
-        print('===== dynamic median =====')
+        print("===== dynamic median =====")
         simulate(trials, track_median=True)
